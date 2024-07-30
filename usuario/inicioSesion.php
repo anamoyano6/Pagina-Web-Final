@@ -1,31 +1,33 @@
 <?php
 session_start();
-
 require('../config/config.php');
+$message = '';
 
-if (!empty($_POST['usuario']) && !empty($_POST['password'])) {
-    $records = $conn->prepare('SELECT id, usuario, contraseña, rol FROM registro WHERE usuario=:usuario');
-    $records->bindParam(':usuario', $_POST['usuario']);
-    $records->execute();
-    $results = $records->fetch(PDO::FETCH_ASSOC);
-
-    $message = '';
-
-    if (count($results) > 0 && password_verify($_POST['password'], $results['contraseña'])) {
-        // Verificar si el usuario es "admin"
-        if ($results['rol'] === 'admin') {
-            $_SESSION['usuarioID'] = $results['id'];
-            $_SESSION['rol'] = 'admin'; // Asegúrate de establecer la sesión del rol
-            header('Location: ../templates/admin.php'); // Redirigir al usuario administrador a admin.php
-            exit();
-        } else {
-            $_SESSION['usuarioID'] = $results['id'];
-            $_SESSION['rol'] = 'usuario'; // Asegúrate de establecer la sesión del rol
-            header('Location: ../templates/inicio.php'); // Redirigir a la página de inicio estándar para otros usuarios
-            exit();
-        }
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (empty($_POST['usuario']) || empty($_POST['password'])) {
+        $message = 'Por favor, complete todos los campos.';
     } else {
-        $message = 'Usuario o contraseña incorrectos.';
+        $records = $conn->prepare('SELECT id, usuario, contraseña, rol FROM registro WHERE usuario=:usuario');
+        $records->bindParam(':usuario', $_POST['usuario']);
+        $records->execute();
+        $results = $records->fetch(PDO::FETCH_ASSOC);
+
+        if ($results && password_verify($_POST['password'], $results['contraseña'])) {
+            // Verificar si el usuario es "admin"
+            if ($results['rol'] === 'admin') {
+                $_SESSION['usuarioID'] = $results['id'];
+                $_SESSION['rol'] = 'admin'; // Asegúrate de establecer la sesión del rol
+                header('Location: ../templates/admin.php'); // Redirigir al usuario administrador a admin.php
+                exit();
+            } else {
+                $_SESSION['usuarioID'] = $results['id'];
+                $_SESSION['rol'] = 'usuario'; // Asegúrate de establecer la sesión del rol
+                header('Location: ../templates/inicio.php'); // Redirigir a la página de inicio estándar para otros usuarios
+                exit();
+            }
+        } else {
+            $message = 'Usuario o contraseña incorrectos.';
+        }
     }
 }
 ?>
@@ -40,9 +42,9 @@ if (!empty($_POST['usuario']) && !empty($_POST['password'])) {
 </head>
 <body>
     <section class="form-main">
-         <div class="form-content">
+        <div class="form-content">
             <div class="box">
-            <?php if(!empty($message)): ?>
+            <?php if (!empty($message)): ?>
                 <p><?= $message ?></p>
             <?php endif; ?>
                 <h3>Bienvenido</h3>
@@ -57,7 +59,7 @@ if (!empty($_POST['usuario']) && !empty($_POST['password'])) {
                 </form>
                 <p>No tienes una cuenta? <a href="registro.php" class="gradient-text">Crear Cuenta</a></p>
             </div>
-         </div>
+        </div>
     </section>
 </body>
 </html>

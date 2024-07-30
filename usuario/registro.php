@@ -2,21 +2,35 @@
 require('../config/config.php');
 $message = '';
 
-if (!empty($_POST['usuario']) && !empty($_POST['password'])) {
-    $sql = "INSERT INTO registro (usuario, contraseña, rol) VALUES (:usuario, :password, :rol)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':usuario', $_POST['usuario']);
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-    $stmt->bindParam(':password', $password);
-    
-    // Asignar el rol "admin" si el usuario es "admin", de lo contrario, asignar el rol "usuario"
-    $rol = ($_POST['usuario'] === 'admin') ? 'admin' : 'usuario';
-    $stmt->bindParam(':rol', $rol);
-
-    if ($stmt->execute()) {
-        header('Location: inicioSesion.php');
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (empty($_POST['usuario']) || empty($_POST['password'])) {
+        $message = 'Por favor, complete todos los campos.';
     } else {
-        $message = 'Error al crear al usuario.';
+        // Verificar si el usuario ya existe
+        $sql = "SELECT * FROM registro WHERE usuario = :usuario";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':usuario', $_POST['usuario']);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user) {
+            $message = 'El nombre de usuario ya existe. Por favor, elija otro.';
+        } else {
+            // Insertar el nuevo usuario
+            $sql = "INSERT INTO registro (usuario, contraseña, rol) VALUES (:usuario, :password, :rol)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':usuario', $_POST['usuario']);
+            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $stmt->bindParam(':password', $password);
+            $rol = ($_POST['usuario'] === 'admin') ? 'admin' : 'usuario';
+            $stmt->bindParam(':rol', $rol);
+
+            if ($stmt->execute()) {
+                header('Refresh: 2; URL=inicioSesion.php');
+            } else {
+                $message = 'Error al crear al usuario.';
+            }
+        }
     }
 }
 ?>
@@ -30,7 +44,7 @@ if (!empty($_POST['usuario']) && !empty($_POST['password'])) {
 </head>
 <body>
     <section class="form-main">
-         <div class="form-content">
+        <div class="form-content">
             <div class="box">
             <?php if(!empty($message)): ?>
                 <p> <?= $message ?></p>
@@ -48,7 +62,7 @@ if (!empty($_POST['usuario']) && !empty($_POST['password'])) {
 
                 <p>Ya tienes una cuenta? <a href="inicioSesion.php" class="gradient-text">Iniciar Sesión</a></p>
             </div>
-         </div>
+        </div>
     </section>
 </body>
 </html>
