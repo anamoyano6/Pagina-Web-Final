@@ -1,0 +1,674 @@
+
+/*****
+FUENTE DE LETRA
+****/
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+/****
+PARTE DEL INICIO SESION Y REGISTRO TAMBIEN INDEX.
+****/
+
+
+:root{
+    --green: hsla(129, 42%, 30%, 0.973); /*boton principal*/
+    --dark-green: hsl(105.75deg 44.92% 16.83%); /*boton degrade*/
+    --blue: hsl(210.98deg 93.18% 49.22%); /*circulo2*/
+    --violet: hsl(266.88deg 100% 51%); /*circulo1*/
+    --tex-black:hsl(0deg 2.3% 10.28%); /*texto titulos*/
+    --text-light-gray:hsl(0deg 2.16% 20.16%); /*texto pequeñ*/
+    --body-bg-color:hsl(0deg 0% 94.45%); /* fondo*/
+    --glass-bg-color:hsl(145.56deg 2.08% 46.86% / 66%); /* glass fondo*/
+    --border-color:hsl(139.5deg 95.47% 1.03% / 81%); /* color del borde cuadradito*/
+    --blur:blur(10px); /*opacidad*/
+    --button-hover-color:hsla(135, 67%, 14%, 0.918); /*color cuando esta sobre el boton*/
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--body-bg-color);
+    color: var(--text-light-gray);
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+body::after,
+body::before{
+    content: '';
+    position: fixed;
+    height: 400px;
+    width: 400px;
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(100px);
+    opacity: 0.5;
+}
+body::before{
+    background-color:var(--blue);
+    left: 0;
+    bottom: 0;
+    transform: translate(-50%);
+}
+body::after{
+    background-color: var(--violet);
+    right: 0;
+    top: 0;
+    transform: translate(60%);
+}
+
+a{
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+}
+.gradient-text{
+    background: linear-gradient(to right, var(--green), var(--dark-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.form-main{
+    min-height: 100vh;
+    padding: 60px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.form-content{
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    z-index: 1;
+}
+.form-content .box{
+    border-color: var(--glass-bg-color);
+    border: 1px solid var(--border-color);
+    padding: 40px 50px;
+    border-radius: 20px;
+}
+
+.form-content h3{
+    font-size: 28px;
+    text-align: center;
+    line-height: 1.2;
+    color: var(--tex-black);
+    font-weight: 500;
+}
+
+.form-content form{
+    margin: 25px 0 20px;
+}
+
+.form-content .input-box{
+    margin-bottom: 25px;
+}
+
+.form-content ::placeholder{
+    color: inherit;
+    opacity: 1;
+}
+
+.form-content .input-control{
+    display: block;
+    height: 45px;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    color: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.form-content .input-control:focus{
+    outline: none;
+}
+
+.form-content .input-link{
+    margin-top: 10px;
+    text-align: right;
+}
+.form-content .btn{
+    height: 45px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: capitalize;
+    font-family: inherit;
+    cursor:pointer;
+    border-radius: 25px;
+    user-select: none;
+    background: linear-gradient(to right, var(--green), var(--dark-green));
+    border: none;
+    color: var(--tex-black);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.form-content .btn::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    transition: backgroud-color 0.5s ease;
+    z-index: -1;
+}
+
+.form-content .btn:hover::before{
+    background-color: var(--button-hover-color);
+}
+
+.form-content p{
+    text-align: center;
+}
+
+@media(max-width:575px){
+    body::after,
+    body::before{
+        height: 250px;
+        width: 250px;
+        filter: blur(100px);
+    }
+    .form-content .box{
+        padding: 40;
+    }
+}
+
+
+/**********
+INDEX
+**********/
+
+
+.container-index {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: auto; /* Agregar margen automático arriba */
+    margin-bottom: auto; /* Agregar margen automático abajo */
+}
+
+
+h1 {
+    font-size: 36px;
+    color: var(--tex-black);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+p {
+    font-size: 18px;
+    color: var(--text-light-gray);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+ul a {
+    text-decoration: none;
+    background-color: var(--green);
+    color: var(--tex-black);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+ul a:hover {
+    background-color: var(--button-hover-color);
+}
+
+
+/**********
+HEADER
+**********/
+
+
+/* Estilos para el cuerpo */
+body {
+    margin: 0; /* Quitar margen */
+    padding: 0; /* Quitar relleno */
+    font-family: "Poppins", sans-serif;
+}
+
+/* Estilos para el header */
+header {
+    background-color: rgba(0, 0, 0, 0.171); /* Color de fondo verde */
+    padding: 15px  20px; /* Relleno de 10px arriba y abajo, 20px a los lados */
+    display: flex; /* Mostrar los elementos en línea */
+    justify-content: space-between; /* Distribuir los elementos horizontalmente */
+    align-items: center; /* Centrar verticalmente los elementos */
+    margin: 0; /* Quitar margen */
+    width: 100%; /* Ancho del 100% del viewport */
+    font-family: "Poppins", sans-serif;
+    border-bottom: 1px solid var(--border-color); /* Agregar línea divisoria */
+}
+
+/* Estilos para el logo */
+.logo {
+    color: var(--tex-black); /* Color del texto blanco */
+    font-size: 24px; /* Tamaño de fuente de 24px */
+    text-decoration: none; /* Sin subrayado para el enlace */
+    flex-grow: 1; /* El logo crecerá para ocupar el espacio restante */
+    text-align: center; /* Centrar el texto dentro del espacio del logo */
+    font-family: "Poppins", sans-serif;
+}
+.logo.title-bold {
+    font-weight: bold;
+}
+/* Estilos para el botón de cerrar sesión */
+.logout-btn {
+    background-color: var(--green); /* Color de fondo rojo */
+    color: white; /* Color del texto blanco */
+    border: none; /* Quitar borde */
+    padding: 8px 10px; /* Relleno de 10px arriba y abajo, 20px a los lados */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+    margin-right: 30px; /* Mover un poco a la derecha */
+    font-family: "Poppins", sans-serif;
+}
+ul a:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Estilos para la sección de navegación */
+.navigation-section {
+    background-color:  rgba(0, 0, 0, 0.068); /* Color de fondo gris claro */
+    padding: 5px; /* Relleno de 10px */
+    display: flex; /* Mostrar los elementos en línea */
+    font-family: "Poppins", sans-serif;
+    border-bottom: 1px solid var(--border-color); /* Agregar línea divisoria */
+}
+
+/* Estilos para los botones de navegación */
+.nav-btn {
+    background-color: transparent; /* Color de fondo verde */
+    color: var(--text-light-gray); /* Color del texto blanco */
+    border: none; /* Quitar borde */
+    padding: 5px 10px; /* Relleno de 10px arriba y abajo, 20px a los lados */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    border-radius: 5px;
+}
+div a:hover {
+    background-color:  rgba(0, 0, 0, 0.171);
+}
+
+
+
+/**********
+METODO POMODORO
+**********/
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centrar el contenido hacia arriba */
+    height: 100vh;
+}
+
+h1 {
+    font-size: 40px; /* Aumentar el tamaño del título */
+    color: var(--tex-black);
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
+.actividad{
+    font-size: 50px; /* Aumentar el tamaño del título */
+    color: #9c9c9cec;
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
+/*temporizador*/
+.temporizador{
+    font-size: 200px; /* Aumentar el tamaño del título */
+    color: var(--text-light-gray);
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
+.pomodoro-btn {
+    background-color: var(--green); /* Color de fondo rojo */
+    color: white; /* Color del texto blanco */
+    border: none; /* Quitar borde */
+    padding: 20px 30px; /* Relleno de 20px arriba y abajo, 30px a los lados */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+    margin-right: 30px; /* Mover un poco a la derecha */
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    flex: 1; /* Todos los botones tienen el mismo tamaño */
+    justify-content: center; /* Centrar contenido horizontalmente */
+    align-items: center; /* Centrar contenido verticalmente */
+    min-width: 150px; /* Ancho mínimo fijo para los botones */
+}
+
+div button:hover {
+    background-color: var(--button-hover-color);
+}
+
+.botones-container {
+    display: flex; /* Utilizar flexbox */
+    justify-content: space-between; /* Distribuir los elementos de manera uniforme */
+    margin-top: 20px; /* Espacio superior entre los botones y el párrafo */
+}
+ /* Estilos para la alerta personalizada */
+ .custom-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px 60px;
+    background-color: var(--body-bg-color);
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none;
+}
+
+
+.custom-alert-message {
+    margin-bottom: 10px;
+    font-family: "Poppins", sans-serif;
+    color: var(--tex-black);
+    margin-bottom: 10px;
+}
+
+.custom-alert-close {
+    background-color: var(--green);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+   
+}
+button .custom-alert-close:hover {
+    background-color: var(--button-hover-color);
+}
+
+
+
+
+/**********
+INICIO
+**********/
+/* Estilos para el banner */
+.banner {
+    width: 100%;
+    height: 600px; /* Reducimos la altura del banner */
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+/* Estilos para las secciones de información */
+.seccion-info {
+    display: flex; /* Para que los elementos se muestren en línea */
+    margin-top: 20px; /* Espacio superior entre las secciones */
+    align-items: center; /* Para alinear verticalmente los elementos */
+    margin-bottom: 20px;
+}
+
+/* Estilos para los contenedores de información */
+.contenedor-info {
+    flex: 1; /* Para que ocupe todo el espacio disponible */
+    padding: 0 20px; /* Espaciado a los lados */
+    margin-bottom: 20px;
+}
+
+.texto-info h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.texto-info p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Estilos para los contenedores de imágenes */
+.contenedor-img {
+    flex: 1; /* Para que ocupe todo el espacio disponible */
+    text-align: center; /* Para centrar horizontalmente la imagen */
+}
+
+.contenedor-img img {
+    max-width: 100%; /* Para que la imagen no sobrepase su contenedor */
+    height: auto; /* Para mantener la proporción de la imagen */
+    margin-top: 20px; /* Espacio superior para separar del texto */
+    height: 200px;
+}
+/* Estilos para el contenedor de las tarjetas */
+.contenedor-tarjetas {
+    display: flex; /* Para que las tarjetas se muestren en línea */
+    justify-content: space-around; /* Para distribuir las tarjetas equitativamente */
+    flex-wrap: wrap; /* Para que las tarjetas se ajusten automáticamente en varias filas si no caben en una sola */
+}
+
+/* Estilos para cada tarjeta */
+/* Estilos para las tarjetas */
+.tarjeta {
+    width: calc(25% - 20px); /* Calculamos el ancho de cada tarjeta restando el margen */
+    margin: 10px; /* Espacio entre las tarjetas */
+    margin-top: 30px;
+    padding: 20px; /* Espaciado interno dentro de cada tarjeta */
+    border: 1px solid #ccc; /* Borde para cada tarjeta */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para efecto de elevación */
+    background-color: #f9f9f9; /* Color de fondo */
+    display: flex; /* Activar flexbox */
+    flex-direction: column; /* Colocar los elementos en columnas */
+    align-items: center; /* Centrar los elementos horizontalmente */
+    justify-content: center; /* Centrar los elementos verticalmente */
+    text-align: center; /* Centrar el texto dentro de la tarjeta */
+    margin-bottom: 40px;
+}
+
+/* Estilos para las imágenes dentro de las tarjetas */
+.tarjeta img {
+    max-width: 100%; /* Para asegurar que la imagen se ajuste al ancho máximo de su contenedor */
+    max-height: 200px; /* Cambiar el valor según sea necesario para el alto máximo deseado */
+    object-fit: cover;
+    margin-bottom: 10px; /* Agregar espacio inferior entre la imagen y el texto */
+}
+
+
+/*****
+*/
+
+/* Estilos para el cuerpo */
+body {
+    background-color: var(--body-bg-color);
+    color: var(--text-light-gray);
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* Estilos para el encabezado */
+header {
+    background-color: rgba(0, 0, 0, 0.171);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Estilos para el logo */
+.logo {
+    color: var(--tex-black);
+    font-size: 24px;
+    text-decoration: none;
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* Estilos para el botón de cerrar sesión */
+.logout-btn {
+    background-color: var(--green);
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+/* Estilos para el contenedor */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alinear el contenido al principio */
+    height: 100vh;
+    padding-top: 50px; /* Agregar espacio en la parte superior */
+}
+
+/* Estilos para el texto de bienvenida */
+.container h1 {
+    font-size: 36px;
+    color: var(--tex-black);
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+/* Estilos para el título de la tabla */
+.container h2 {
+    font-size: 24px;
+    color: var(--text-light-gray);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Estilos para la tabla */
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    text-align: center; /* Centrar el contenido de la tabla */
+}
+
+th, td {
+    padding: 8px;
+    text-align: center; /* Centrar el texto dentro de las celdas */
+    border-bottom: 1px solid var(--border-color);
+}
+th {
+    background-color: var(--glass-bg-color);
+}
+
+/* Estilos para los enlaces en la tabla */
+a {
+    color: var(--green);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para el contenedor */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alinear el contenido al principio */
+    height: 100vh;
+    padding-top: 50px; /* Agregar espacio en la parte superior */
+}
+
+/* Estilos para el título */
+.container h1 {
+    font-size: 36px;
+    color: var(--tex-black);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estilos para el formulario */
+.container form {
+    width: 80%;
+    max-width: 400px; /* Ancho máximo del formulario */
+}
+
+/* Estilos para los campos del formulario */
+.container form div {
+    margin-bottom: 20px;
+}
+
+/* Estilos para las etiquetas de los campos */
+.container form label {
+    display: block;
+    font-size: 18px;
+    color: var(--tex-black);
+    margin-bottom: 5px;
+}
+
+/* Estilos para los campos de entrada */
+.container form input[type="text"],
+.container form select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+/* Estilos para el botón de enviar */
+.container form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    background-color: var(--green);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.container form button[type="submit"]:hover {
+    background-color: var(--button-hover-color);
+}
