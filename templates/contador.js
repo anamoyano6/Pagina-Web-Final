@@ -6,6 +6,7 @@ var tipo_actividad = 'estudio'; // Tipo de actividad actual (estudio o descanso)
 var contador_iniciado = false; // Bandera para indicar si el contador ha sido iniciado
 var alarma = new Audio('../img/alarma2.mp3'); // Sonido de alerta
 
+
 function iniciarContadorEstudio() {
     tipo_actividad = 'estudio';
     tiempo_restante = duracion_estudio * 60;
