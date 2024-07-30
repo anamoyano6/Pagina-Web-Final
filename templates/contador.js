@@ -1,10 +1,10 @@
-var duracion_estudio = 25; // Duración del periodo de estudio en minutos (1 minuto)
-var duracion_descanso = 5; // Duración del periodo de descanso en minutos (1 minuto)
-var tiempo_restante; // Variable para almacenar el tiempo restante en segundos
-var contador; // Variable para almacenar el intervalo del contador
-var tipo_actividad = 'estudio'; // Tipo de actividad actual (estudio o descanso)
-var contador_iniciado = false; // Bandera para indicar si el contador ha sido iniciado
-var alarma = new Audio('../img/alarma2.mp3'); // Sonido de alerta
+var duracion_estudio = 2; 
+var duracion_descanso = 1; 
+var tiempo_restante; 
+var contador; 
+var tipo_actividad = 'estudio'; 
+var contador_iniciado = false; 
+var alarma = new Audio('../img/alarma2.mp3'); 
 
 
 function iniciarContadorEstudio() {
@@ -36,12 +36,12 @@ function iniciarContador() {
 
 function pausarContador() {
     clearInterval(contador);
-    contador_iniciado = false; // establecer la bandera como falsa al pausar el contador
+    contador_iniciado = false; 
 }
 
 function reiniciarContador() {
     clearInterval(contador);
-    contador_iniciado = false; // establecer la bandera como falsa al reiniciar el contador
+    contador_iniciado = false; 
     iniciarContador();
 }
 
@@ -61,13 +61,13 @@ function actualizarContador() {
 
     if (tiempo_restante < 0) {
         clearInterval(contador);
-        alarma.play(); // Reproducir el sonido de alerta
-        mostrarAlertaPersonalizada("¡Tiempo terminado!"); // Mostrar la notificación personalizada
+        alarma.play(); 
+        mostrarAlertaPersonalizada("¡Tiempo terminado!"); 
 
         if (tipo_actividad === 'estudio') {
-            iniciarContadorDescanso(); // Cambiar al temporizador de descanso después de que termine el de estudio
+            iniciarContadorDescanso(); 
         } else {
-            iniciarContadorEstudio(); // Cambiar al temporizador de estudio después de que termine el de descanso
+            iniciarContadorEstudio(); 
         }
     }
 }
